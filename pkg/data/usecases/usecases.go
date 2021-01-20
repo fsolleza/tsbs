@@ -32,6 +32,7 @@ func GetSimulatorConfig(dgc *common.DataGeneratorConfig) (common.SimulatorConfig
 			InitHostCount:   dgc.InitialScale,
 			HostCount:       dgc.Scale,
 			HostConstructor: devops.NewHost,
+            Churn: dgc.Churn,
 		}
 	case common.UseCaseIoT:
 		ret = &iot.SimulatorConfig{

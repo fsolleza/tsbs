@@ -81,6 +81,8 @@ func (d *DevopsSimulatorConfig) NewSimulator(interval time.Duration, limit uint6
 
 			hostIndex: 0,
 			hosts:     hostInfos,
+            newHostIndex: d.HostCount,
+            hostconstructor: d.HostConstructor,
 
 			epoch:          0,
 			epochs:         epochs,
@@ -89,6 +91,7 @@ func (d *DevopsSimulatorConfig) NewSimulator(interval time.Duration, limit uint6
 			timestampStart: d.Start,
 			timestampEnd:   d.End,
 			interval:       interval,
+            churn:          d.Churn,
 		},
 		simulatedMeasurementIndex: 0,
 	}

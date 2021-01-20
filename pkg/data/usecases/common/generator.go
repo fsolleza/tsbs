@@ -106,6 +106,7 @@ type BaseConfig struct {
 	Use    string `yaml:"use-case" mapstructure:"use-case"`
 
 	Scale uint64
+    Churn float64
 
 	TimeStart string `yaml:"timestamp-start" mapstructure:"timestamp-start"`
 	TimeEnd   string `yaml:"timestamp-end" mapstructure:"timestamp-end"`
@@ -120,6 +121,7 @@ func (c *BaseConfig) AddToFlagSet(fs *pflag.FlagSet) {
 	fs.String("use-case", "", fmt.Sprintf("Use case to generate."))
 
 	fs.Uint64("scale", 1, "Scaling value specific to use case (e.g., devices in 'devops').")
+	fs.Float64("churn", 0.0, "Likelihood that a host changes")
 
 	fs.String("timestamp-start", defaultTimeStart, "Beginning timestamp (RFC3339).")
 	fs.String("timestamp-end", defaultTimeEnd, "Ending timestamp (RFC3339).")

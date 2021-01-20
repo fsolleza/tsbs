@@ -4,6 +4,7 @@ import (
 	"github.com/timescale/tsbs/pkg/data"
 	"github.com/timescale/tsbs/pkg/data/usecases/common"
 	"time"
+    "math/rand"
 )
 
 // HostContext contains information needed to create a new host
@@ -28,6 +29,7 @@ type commonDevopsSimulatorConfig struct {
 	HostConstructor func(ctx *HostContext) Host
 	// MaxMetricCount is the max number of metrics per host to create when using generic-devops use-case
 	MaxMetricCount uint64
+    Churn float64
 }
 
 func NewHostCtx(id int, start time.Time) *HostContext {
@@ -48,11 +50,14 @@ type commonDevopsSimulator struct {
 
 	hostIndex uint64
 	hosts     []Host
+    newHostIndex uint64
+	hostconstructor func(ctx *HostContext) Host
 
 	epoch      uint64
 	epochs     uint64
 	epochHosts uint64
 	initHosts  uint64
+    churn      float64
 
 	timestampStart time.Time
 	timestampEnd   time.Time
@@ -128,9 +133,15 @@ func (s *commonDevopsSimulator) populatePoint(p *data.Point, measureIdx int) boo
 	// Populate measurement-specific tags and fields:
 	host.SimulatedMeasurements[measureIdx].ToPoint(p)
 
+    if rand.Float64() < s.churn {
+        s.hosts[s.hostIndex] = s.hostconstructor(NewHostCtx(int(s.newHostIndex), s.timestampStart))
+        s.newHostIndex++
+    }
+
 	ret := s.hostIndex < s.epochHosts
 	s.madePoints++
 	s.hostIndex++
+
 	return ret
 }
 

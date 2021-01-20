@@ -3,6 +3,8 @@
 .DS_Store
 .idea
 .vscode
+.*.swp
+.*.swo
 
 # High Dynamic Range (HDR) Histogram files
 *.hdr
