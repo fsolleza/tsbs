@@ -21,12 +21,12 @@ var (
 
 	nginxFields = []common.LabeledDistributionMaker{
 		{Label: []byte("accepts"), DistributionMaker: func() common.Distribution { return common.MWD(nginxND, 0) }},
-		{Label: []byte("active"), DistributionMaker: func() common.Distribution { return common.CWD(nginxND, 0, 100, 0) }},
+		{Label: []byte("active"), DistributionMaker: func() common.Distribution { return common.CWD(common.ND(0, 1), 0, 100, 5) }},
 		{Label: []byte("handled"), DistributionMaker: func() common.Distribution { return common.MWD(nginxND, 0) }},
-		{Label: []byte("reading"), DistributionMaker: func() common.Distribution { return common.CWD(nginxND, 0, 100, 0) }},
+		{Label: []byte("reading"), DistributionMaker: func() common.Distribution { return common.CWD(common.ND(0, 1), 0, 100, 5) }},
 		{Label: []byte("requests"), DistributionMaker: func() common.Distribution { return common.MWD(nginxND, 0) }},
-		{Label: []byte("waiting"), DistributionMaker: func() common.Distribution { return common.CWD(nginxND, 0, 100, 0) }},
-		{Label: []byte("writing"), DistributionMaker: func() common.Distribution { return common.CWD(nginxND, 0, 100, 0) }},
+		{Label: []byte("waiting"), DistributionMaker: func() common.Distribution { return common.CWD(common.ND(0, 1), 0, 100, 5) }},
+		{Label: []byte("writing"), DistributionMaker: func() common.Distribution { return common.CWD(common.ND(0, 1), 0, 100, 5) }},
 	}
 )
 

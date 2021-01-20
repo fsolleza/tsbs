@@ -17,11 +17,11 @@ var (
 	kernelND = common.ND(5, 1)
 
 	kernelFields = []common.LabeledDistributionMaker{
-		{Label: []byte("interrupts"), DistributionMaker: func() common.Distribution { return common.MWD(kernelND, 0) }},
-		{Label: []byte("context_switches"), DistributionMaker: func() common.Distribution { return common.MWD(kernelND, 0) }},
-		{Label: []byte("processes_forked"), DistributionMaker: func() common.Distribution { return common.MWD(kernelND, 0) }},
-		{Label: []byte("disk_pages_in"), DistributionMaker: func() common.Distribution { return common.MWD(kernelND, 0) }},
-		{Label: []byte("disk_pages_out"), DistributionMaker: func() common.Distribution { return common.MWD(kernelND, 0) }},
+		{Label: []byte("interrupts"), DistributionMaker: func() common.Distribution { return common.WD(common.ND(0, 1), 5) }},
+		{Label: []byte("context_switches"), DistributionMaker: func() common.Distribution { return common.WD(common.ND(0, 1), 5) }},
+		{Label: []byte("processes_forked"), DistributionMaker: func() common.Distribution { return common.WD(common.ND(0, 1), 5) }},
+		{Label: []byte("disk_pages_in"), DistributionMaker: func() common.Distribution { return common.WD(common.ND(0, 1), 5) }},
+		{Label: []byte("disk_pages_out"), DistributionMaker: func() common.Distribution { return common.WD(common.ND(0, 1), 5) }},
 	}
 )
 

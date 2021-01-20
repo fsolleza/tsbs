@@ -60,7 +60,7 @@ func NewDiskMeasurement(start time.Time) *DiskMeasurement {
 	path := fmt.Sprintf(pathFmt, rand.Intn(10))
 	fsType := common.RandomStringSliceChoice(diskFSTypeChoices)
 	sub := common.NewSubsystemMeasurement(start, 1)
-	sub.Distributions[0] = common.CWD(common.ND(50, 1), 0, oneTerabyte, oneTerabyte/2)
+	sub.Distributions[0] = common.CWD(common.ND(0, 50), 0, oneTerabyte, oneTerabyte/2)
 
 	return &DiskMeasurement{
 		SubsystemMeasurement: sub,
